@@ -3,6 +3,7 @@ package matchers_test
 import (
 	"errors"
 	"strings"
+	"time"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -43,6 +44,9 @@ var _ = Describe("Equal", func() {
 			Expect(myCustomType{s: "foo", n: 3, f: 2.0, arr: []string{"a", "b"}}).ShouldNot(Equal(myCustomType{s: "foo", n: 2, f: 2.0, arr: []string{"a", "b"}}))
 			Expect(myCustomType{s: "foo", n: 3, f: 2.0, arr: []string{"a", "b"}}).ShouldNot(Equal(myCustomType{s: "foo", n: 3, f: 3.0, arr: []string{"a", "b"}}))
 			Expect(myCustomType{s: "foo", n: 3, f: 2.0, arr: []string{"a", "b"}}).ShouldNot(Equal(myCustomType{s: "foo", n: 3, f: 2.0, arr: []string{"a", "b", "c"}}))
+
+			moment := time.Now()
+			Expect(moment.In(time.FixedZone("UTC+2", 2*60*60))).ShouldNot(Equal(moment.In(time.FixedZone("UTC-8", -8*60*60))))
 		})
 	})
 

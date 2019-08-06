@@ -3,6 +3,7 @@ module github.com/onsi/gomega
 require (
 	github.com/fsnotify/fsnotify v1.4.7 // indirect
 	github.com/golang/protobuf v1.2.0
+	github.com/google/go-cmp v0.3.0
 	github.com/hpcloud/tail v1.0.0 // indirect
 	github.com/onsi/ginkgo v1.6.0
 	golang.org/x/net v0.0.0-20180906233101-161cd47e91fd

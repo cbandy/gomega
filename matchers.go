@@ -3,6 +3,7 @@ package gomega
 import (
 	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/onsi/gomega/matchers"
 	"github.com/onsi/gomega/types"
 )
@@ -48,6 +49,15 @@ func BeTrue() types.GomegaMatcher {
 //BeFalse succeeds if actual is false
 func BeFalse() types.GomegaMatcher {
 	return &matchers.BeFalseMatcher{}
+}
+
+//CompareTo uses github.com/google/go-cmp to compare actual with expected.
+//The comparison can be customized with comparison Options.
+func CompareTo(expected interface{}, options ...cmp.Option) types.GomegaMatcher {
+	return &matchers.CompareToMatcher{
+		EqualMatcher: matchers.EqualMatcher{Expected: expected},
+		Options:      options,
+	}
 }
 
 //HaveOccurred succeeds if actual is a non-nil error
